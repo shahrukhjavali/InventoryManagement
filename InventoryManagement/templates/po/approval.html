@@ -1,0 +1,37 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+    #frmapp{
+        position: absolute;
+        top:20%;
+        left: 30%;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<div id="frmapp">
+<form method="POST">
+    {%csrf_token%}
+    <div class="form-group">
+    <label>Po Order Number</label>
+    <input type="text" readonly="true" name="ponum" class="form-control" value="{{obj.prnumber}}"/>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <select name="selcomment" class="form-control">
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+            <option value="On_Hold">On Hold</option>
+            <option value="Received">Received</option>
+        </select>
+        </div>
+    <div class="form-group">
+    <label>Comments</label>
+    <input type="text" name="comments" class="form-control"/>
+    </div>
+    <input type="submit" value="Approve" class="btn btn-primary"/>
+</form>
+</div>
+{%endblock%}

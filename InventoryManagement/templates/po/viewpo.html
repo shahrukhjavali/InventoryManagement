@@ -1,0 +1,57 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+    .table{
+        position: absolute;
+        top: 10%;
+        margin-left: 20px;
+        margin-right: 80px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Approval Status</th>
+        <td>Comments</td>
+        <th>Order By</th>
+        <th>Supplier Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for po in pos%}
+      <tr>
+       <td>{{po.prnumber}}</td>
+       <td>{{po.orderdate}}</td>
+       <td>{{po.Approval}}</td>
+       <td>{{po.Approval_comments}}</td>
+       <td>{{po.orderedby}}</td>
+       <td>{{po.supplier.supplier.user}}</td>
+       <td>
+           <a href="{%url 'podetailedview' po.id%}" class="btn btn-success">Details</a>
+           {%if user.role == 'PM' or user.role == 'AD'%}
+              {%if po.Approval != 'Received'%}
+                <a href="{%url 'approval' po.id%}" class="btn btn-primary">Approve</a>
+              {%endif%} 
+              
+              {%if po.Approval != 'Updated Inventory' or po.Approval != 'Created Inventory'%}
+              {%if po.Approval == 'Received'%}
+                <form method="POST" action="{%url 'addinv' po.id%}">
+                  {%csrf_token%}
+                  <input type="submit" value="Inventory" class="btn btn-primary"/>
+                </form>
+              {%endif%}
+              {%endif%}
+           {%endif%}
+       </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{%endblock%}

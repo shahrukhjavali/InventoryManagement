@@ -1,0 +1,48 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="{%static 'bootstrap/index.css'%}"/>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'bootstrap/js/jquery-3.4.1.js'%}"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Inventory Management</a>
+    <span style="color: white;">Welcome  {{request.user.username}}</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>  
+  <div class="sidenav" id="sidenavbar">
+    {%if userole.role == 'AD'%}
+    <a href="{%url 'uomview'%}">View Uom</a>
+    <a href="#">View Products</a>
+    <a href="{%url 'adduom'%}">Add Uom</a>
+    <a href="#">Add Products</a>
+    <a href="{%url 'addpo'%}">Creat Po</a>
+    <a href="{%url 'viewpo'%}">View Po</a>
+    <a href="#">View Supplier</a>
+    <a href="{%url 'addsupllier'%}">Add Supplier</a>
+    <a href="#">Inventory</a>
+    <a href="#">User</a>
+    {%endif%}
+
+    {%if userole.role == 'PM'%}
+    <a href="{%url 'uomview'%}">View Uom</a>
+    <a href="#">View Products</a>
+    <a href="{%url 'addpo'%}">Creat Po</a>
+    <a href="{%url 'viewpo'%}">View Po</a>
+    <a href="#">View Supplier</a>
+    <a href="#">Inventory</a>
+    <a href="#">User</a>
+    {%endif%}
+    <a href="{%url 'logout'%}">Logout</a>
+  </div>
+</body>
+</html>

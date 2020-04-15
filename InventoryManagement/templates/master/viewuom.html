@@ -1,0 +1,49 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+    .table{
+        position: absolute;
+        top: 10%;
+        margin-left: 20px;
+        margin-right: 80px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>CreatedBy</th>
+        <th>Creation Date</th>
+        <th>Updated by</th>
+        <th>Last Update date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       {%for uom in uoms%}
+       <td>{{uom.name}}</td>
+       <td>{{uom.desc}}</td>
+       {%if uom.status is True%}
+        <td>Active</td>
+        {%else%}
+        <td>Inactive</td>
+        {%endif%}
+        <td>{{uom.createdby}}</td>
+        <td>{{uom.created_date}}</td>
+        <td>{{uom.last_update_by}}</td>
+        <td>{{uom.last_update_date}}</td>
+        <td>
+          <a href="" class="btn btn-danger">Active</a>
+        </td>
+       {%endfor%}
+      </tr>
+    </tbody>
+  </table>
+{%endblock%}

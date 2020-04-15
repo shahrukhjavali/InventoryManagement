@@ -1,0 +1,54 @@
+{%extends 'login/base.html'%}
+
+
+{%block css%}
+<style>
+    .table{
+        position: absolute;
+        top: 10%;
+        margin-left: 20px;
+        margin-right: 80px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Supplier</th>
+        <th>Mobile Number</th>
+        <th>Status</th>
+        <th>Adderss</th>
+        <td>Email</td>
+        <th>CreatedBy</th>
+        <th>Creation Date</th>
+        <th>Updated by</th>
+        <th>Last Update date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for supplier in suppliers%}
+      <tr>
+       <td>{{supplier.supplier.user}}</td>
+       <td>{{supplier.mobnum}}</td>
+       {%if supplier.status is True%}
+        <td>Active</td>
+        {%else%}
+        <td>Inactive</td>
+        {%endif%}
+        <td>{{supplier.Adderss}} {{supplier.city}} {{supplier.state}} {{supplier.pincode}}</td>
+        <td>{{supplier.email}}</td>
+        <td>{{supplier.createdby}}</td>
+        <td>{{supplier.creation_date}}</td>
+        <td>{{supplier.last_update_by}}</td>
+        <td>{{supplier.last_update_date}}</td>
+        <td>
+          <a href="" class="btn btn-danger">Active</a>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{%endblock%}

@@ -1,0 +1,60 @@
+{%extends 'login/base.html'%}
+
+
+{%block css%}
+<style>
+    .table{
+        position: absolute;
+        top: 10%;
+        margin-left: 20px;
+        margin-right: 80px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quntity</th>
+        <th>Uom</th>
+        <th>Total</th>
+        <th>Product Status</th>
+        <th>Last update by</th>
+        <th>Last update date</th>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+        {%for item in podetailed%}
+      <tr>
+       <td>{{item.products.name}}</td>
+       <td>{{item.quantity}}</td>
+       <td>{{item.uom.name}}</td>
+       <td>{{item.total}}</td>
+       <td>{{item.product_status}}</td>
+       <td>{{item.last_update_by}}</td>
+       <td>{{item.last_update_date}}</td>
+       {%if po.Approval != 'Approved'%}
+       {%if item.product_status%}
+       <td>
+         <form method="POST" action="{%url 'productinclude' item.id%}">
+           {%csrf_token%}
+          <input type="submit" value="Exclude" class="btn btn-danger"/>
+        </form>
+        </td>
+       {%else%}
+       <td>
+        <form method="POST" action="{%url 'productinclude' item.id%}">
+          {%csrf_token%}
+          <input type="submit" value="Include" class="btn btn-success"/>
+        </form>
+        </td>
+        {%endif%}
+       {%endif%}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{%endblock%}

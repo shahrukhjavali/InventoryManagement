@@ -1,0 +1,23 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+    #uomfrm{
+        position: absolute;
+        top: 20%;
+        left: 40%;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+<form id="uomfrm" method="POST">
+    <h1>Add Uom</h1>
+    {%csrf_token%}
+    <input type="text" name="uomname" class="form-control" placeholder="Name"/><br>
+    <input type="text" name="uomdesc" class="form-control" placeholder="Description"/><br>
+    <input type="submit" value="Add" class="btn btn-primary"/>
+</form>
+</div>
+{%endblock%}

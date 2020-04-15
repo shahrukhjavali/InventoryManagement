@@ -1,0 +1,64 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+#supplierform{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+</style>
+{%endblock%}
+
+{%block content%}
+<div id="supplierform">
+<div class="row">
+<div class="column">
+    <h1>Add Supplier Details</h1>
+<form method="POST">
+    {%csrf_token%}
+    <div class="form-group">
+        <label>Supplier</label>
+        <select name="selsupplier" class="form-control">
+            {%for user in users%}
+            <option  value="{{user.user_id}}">{{user.user}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Mobile num</label>
+        <input type="text" name="mobnum" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>Adderss line1</label>
+        <input type="text" name="add1" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>Adderss line2</label>
+        <input type="text" name="add2" class="form-control"/>
+    </div>
+</div>
+<div class="column">
+    <div class="form-group">
+        <label>city</label>
+        <input type="text" name="city" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>State</label>
+        <input type="text" name="state" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>pincode</label>
+        <input type="text" name="pincode" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control"/>
+    </div>
+</div>
+</div>
+<input type="submit" value="Add" class="btn btn-primary"/>
+</form>    
+</div>
+{%endblock%}

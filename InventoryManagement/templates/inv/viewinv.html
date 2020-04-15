@@ -1,0 +1,39 @@
+{%extends 'login/base.html'%}
+
+{%block css%}
+<style>
+    .table{
+        position: absolute;
+        top: 10%;
+        margin-left: 20px;
+        margin-right: 80px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>qty</th>
+        <th>CreatedBy</th>
+        <th>Creation Date</th>
+        <th>Updated by</th>
+        <th>Last Update date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for item in inv%}
+      <tr>
+       <td>{{item.items.name}}</td>
+       <td>{{item.qty}}</td>
+        <td>{{item.createdby}}</td>
+        <td>{{item.creation_date}}</td>
+        <td>{{item.last_update_by}}</td>
+        <td>{{item.last_update_date}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{%endblock%}
